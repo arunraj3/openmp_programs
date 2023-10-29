@@ -17,7 +17,7 @@ void main()
         printf("Multiplication us not possible!");
         exit(0);
     }
-
+    double start = omp_get_wtime();
     int matrix[matrix_row_size][matrix_row_size];
     int vector[vector_size], resultant[matrix_row_size];
 
@@ -45,7 +45,7 @@ void main()
             }
         }
     }
-
+    double end = omp_get_wtime();
     printf("Matrix * Vector = Resultant\n");
     for (int row = 0; row < matrix_row_size; row++)
     {
@@ -57,4 +57,5 @@ void main()
         printf("]");
         printf(" * %3d = %6d\n", vector[row], resultant[row]);
     }
+    printf("Time Taken to Execute : %f\n", (end - start));
 }
