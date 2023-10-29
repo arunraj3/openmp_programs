@@ -14,7 +14,6 @@ void main()
 #pragma omp parallel for
     for (i = 0; i < n; i++)
     {
-        srand(i);
         cgpa_arr[i] = (double)(rand() % 100) / 10;
     }
     printf("CGPA of students : ");

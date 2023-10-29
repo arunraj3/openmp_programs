@@ -14,13 +14,13 @@ void main()
 
     if (matrix_row_size != vector_size)
     {
-        printf("Multiplication us not possible!");
+        printf("Multiplication is not possible!");
         exit(0);
     }
-    double start = omp_get_wtime();
+    
     int matrix[matrix_row_size][matrix_row_size];
     int vector[vector_size], resultant[matrix_row_size];
-
+double start = omp_get_wtime();
 #pragma omp parallel
     {
         for (int row = 0; row < matrix_row_size; row++)
