@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
+#include <time.h>
 
 void main()
 {
@@ -12,8 +13,6 @@ void main()
     int matrix_two[n][n];
     int result_matrix[n][n];
 
-    omp_set_num_threads(64);
-
 #pragma omp parallel private(j)
     {
 #pragma omp for
@@ -21,11 +20,13 @@ void main()
         {
             for (j = 0; j < n; j++)
             {
+
                 matrix_one[i][j] = rand() % 100;
                 matrix_two[i][j] = rand() % 100;
             }
         }
     }
+
     double start_parallel = omp_get_wtime();
 #pragma omp parallel private(j, k)
     {
@@ -43,19 +44,22 @@ void main()
         }
     }
     double end_parallel = omp_get_wtime();
-    printf("Time taken by parellel Algorithm : %lf\n", (double)(end_parallel - start_parallel));
+    printf("Time taken by parellel Algorithm : %lf\n", (end_parallel - start_parallel));
+
     double start = omp_get_wtime();
-    for (i = 0; i < n; i++)
+
+    for (int a = 0; a < n; a++)
     {
-        for (j = 0; j < n; j++)
+        for (int b = 0; b < n; b++)
         {
-            result_matrix[i][j] = 0;
-            for (k = 0; k < n; k++)
+            result_matrix[a][b] = 0;
+            for (int c = 0; c < n; c++)
             {
-                result_matrix[i][j] += matrix_one[i][k] * matrix_two[k][j];
+                result_matrix[a][b] += matrix_one[a][c] * matrix_two[c][b];
             }
         }
     }
     double end = omp_get_wtime();
-    printf("Time taken by sequential Algorithm : %lf\n", (double)(end - start));
+
+    printf("Time taken by sequential Algorithm : %lf\n", (end - start));
 }
