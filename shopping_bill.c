@@ -111,5 +111,5 @@ void main()
     }
     double end = omp_get_wtime();
     printf("The Total cost : %d\n", global_sum);
-    printf("Time Taken to Execute : %f\n", (end - start));
+    printf("Time Taken to Execute : %f\n",(double)(end - start));
 }

@@ -45,7 +45,7 @@ double start = omp_get_wtime();
             }
         }
     }
-    double end = omp_get_wtime();
+double end = omp_get_wtime();
     printf("Matrix * Vector = Resultant\n");
     for (int row = 0; row < matrix_row_size; row++)
     {
@@ -57,5 +57,5 @@ double start = omp_get_wtime();
         printf("]");
         printf(" * %3d = %6d\n", vector[row], resultant[row]);
     }
-    printf("Time Taken to Execute : %f\n", (end - start));
+    printf("Time Taken to Execute : %ld\n",(double) (end - start));
 }

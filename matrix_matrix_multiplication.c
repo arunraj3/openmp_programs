@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
-#include <time.h>
+
 
 void main()
 {
@@ -9,12 +9,10 @@ void main()
     printf("Enter the dimension of square matrices : ");
     scanf("%d", &n);
     int i = 0, j = 0, k = 0;
-    // int matrix_one[n][n];
+
     int **matrix_one = (int **)malloc(n * sizeof(int **));
     int **matrix_two = (int **)malloc(n * sizeof(int **));
     int **result_matrix = (int **)malloc(n * sizeof(int **));
-    // int matrix_two[n][n];
-    // int result_matrix[n][n];
 
     omp_set_num_threads(64);
 
@@ -23,11 +21,11 @@ void main()
 #pragma omp for
         for (i = 0; i < n; i++)
         {
-            for (j = 0; j < n; j++)
-            {
                 matrix_one[i] = (int *)malloc(n * sizeof(int));
                 matrix_two[i] = (int *)malloc(n * sizeof(int));
-                result_matrix[j] = (int *)malloc(n * sizeof(int));
+                result_matrix[i] = (int *)malloc(n * sizeof(int));
+            for (j = 0; j < n; j++)
+            {
                 matrix_one[i][j] = rand() % 100;
                 matrix_two[i][j] = rand() % 100;
             }
